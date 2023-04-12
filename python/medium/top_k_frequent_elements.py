@@ -14,3 +14,18 @@ class Solution:
                 res.append(n)
                 if len(res) == k:
                     return res
+#Other Solution
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        d = collections.Counter(nums)
+        heap = []
+        for key, val in d.items():
+            heap.append((-val,key))
+        heapq.heapify(heap)
+        
+        res = []
+
+        while k > 0:
+            res.append(heapq.heappop(heap)[1])
+            k -= 1
+        return res
