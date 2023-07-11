@@ -1,19 +1,18 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         res = []
-
         subset = []
 
-        def dfs(i):
-            if i >= len(nums):
+        def helper(subset: List[int], jumps: int):
+            if jumps > len(nums) -1:
                 res.append(subset.copy())
                 return
-            # decision to include nums[i]
-            subset.append(nums[i])
-            dfs(i + 1)
-            # decision NOT to include nums[i]
-            subset.pop()
-            dfs(i + 1)
 
-        dfs(0)
+            subset.append(nums[jumps])
+            helper(subset, jumps+1)
+            
+            subset.pop()
+            helper(subset, jumps+1)   
+        
+        helper(subset, 0)
         return res
