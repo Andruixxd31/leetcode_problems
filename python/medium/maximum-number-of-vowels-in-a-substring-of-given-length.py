@@ -18,4 +18,4 @@ class Solution:
                 count += 1
             maxCount = max(maxCount, count)
 
-        return maxCoun
+        return maxCount
